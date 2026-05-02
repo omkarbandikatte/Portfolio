@@ -25,6 +25,7 @@ import {
   Users,
 } from "lucide-react";
 import Chatbot from "@/components/Chatbot";
+import TechBalls from "@/components/TechBalls";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
@@ -625,7 +626,10 @@ function About() {
 function Skills() {
   return (
     <Section id="skills" label="// TECH_STACK" title="Skills">
-      <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* 3D Tech Balls */}
+      <TechBalls />
+
+      <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-16">
         {Object.entries(SKILLS).map(([category, items], idx) => (
           <motion.div key={category} variants={fadeUpDelay(idx * 0.1)}>
             <TerminalWindow
