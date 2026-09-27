@@ -14,23 +14,25 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Omkar Bandikatte — Software Developer",
+  title: "Omkar Bandikatte — AI & Full-Stack Engineer",
   description:
-    "Portfolio of Omkar Pramod Bandikatte — Software Developer specializing in AI/ML, Full-Stack Web Development, and scalable systems.",
+    "Portfolio of Omkar Bandikatte, an AI and full-stack engineer building RAG pipelines, AI agents, data platforms, and production web applications.",
   keywords: [
     "Omkar Bandikatte",
     "Software Developer",
     "Full Stack",
     "AI",
     "ML",
+    "RAG",
+    "AI Agents",
     "React",
     "Next.js",
     "Python",
   ],
   openGraph: {
-    title: "Omkar Bandikatte — Software Developer",
+    title: "Omkar Bandikatte — AI & Full-Stack Engineer",
     description:
-      "Portfolio of Omkar Pramod Bandikatte — Software Developer specializing in AI/ML, Full-Stack Web Development, and scalable systems.",
+      "RAG pipelines, AI agents, data platforms, and production full-stack applications by Omkar Bandikatte.",
     type: "website",
   },
 };
@@ -41,7 +43,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.classList.remove('light','dark');document.documentElement.classList.add(t);document.documentElement.style.colorScheme=t}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${jetbrains.variable} font-sans antialiased`}
       >

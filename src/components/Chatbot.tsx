@@ -71,7 +71,7 @@ export default function Chatbot() {
         onClick={() => setOpen((o) => !o)}
         whileHover={{ scale: 1.1, boxShadow: "0 0 24px rgba(34, 197, 94, 0.4)" }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-[90] flex h-[72px] w-[72px] items-center justify-center rounded-full border border-green-500/30 bg-[#0d1117] shadow-lg shadow-green-500/10 transition-all hover:border-green-500/50 hover:shadow-green-500/20"
+        className="theme-chat-button fixed bottom-4 right-4 z-[90] flex h-14 w-14 items-center justify-center rounded-full border border-green-500/30 bg-[#0d1117] shadow-lg shadow-green-500/10 transition-all hover:border-green-500/50 hover:shadow-green-500/20 sm:bottom-6 sm:right-6 sm:h-[72px] sm:w-[72px]"
       >
         <AnimatePresence mode="wait">
           {open ? (
@@ -137,10 +137,10 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-24 right-6 z-[90] flex h-[480px] w-[360px] flex-col overflow-hidden rounded-lg border border-green-500/20 bg-[#0a0a0f]/95 shadow-2xl shadow-green-500/10 backdrop-blur-sm"
+            className="theme-chat fixed bottom-20 right-4 z-[90] flex h-[min(480px,calc(100vh-6rem))] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-lg border border-green-500/20 bg-[#0a0a0f]/95 shadow-2xl shadow-green-500/10 backdrop-blur-sm sm:bottom-24 sm:right-6 sm:w-[360px]"
           >
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-white/[0.06] bg-white/[0.02] px-4 py-3">
+            <div className="theme-panel-header flex items-center gap-3 border-b border-white/[0.06] bg-white/[0.02] px-4 py-3">
               <div className="flex gap-1.5">
                 <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
                 <div className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
@@ -172,7 +172,7 @@ export default function Chatbot() {
                     className={`max-w-[80%] rounded-lg px-4 py-2.5 text-sm leading-relaxed ${
                       msg.role === "user"
                         ? "border border-green-500/30 bg-green-500/10 text-green-300 rounded-br-sm"
-                        : "border border-white/[0.06] bg-white/[0.03] text-gray-300 rounded-bl-sm"
+                        : "theme-chat-message border border-white/[0.06] bg-white/[0.03] text-gray-300 rounded-bl-sm"
                     }`}
                   >
                     {msg.content}
@@ -190,7 +190,7 @@ export default function Chatbot() {
                   className="flex items-center gap-2"
                 >
                   <span className="text-green-500 font-mono text-xs">{">"}</span>
-                  <div className="rounded-lg rounded-bl-sm border border-white/[0.06] bg-white/[0.03] px-4 py-2.5">
+                  <div className="theme-chat-message rounded-lg rounded-bl-sm border border-white/[0.06] bg-white/[0.03] px-4 py-2.5">
                     <Loader2 className="h-4 w-4 animate-spin text-green-400" />
                   </div>
                 </motion.div>
@@ -205,7 +205,7 @@ export default function Chatbot() {
                 e.preventDefault();
                 handleSend();
               }}
-              className="flex items-center gap-2 border-t border-white/[0.06] bg-white/[0.02] px-4 py-3"
+              className="theme-panel-header flex items-center gap-2 border-t border-white/[0.06] bg-white/[0.02] px-4 py-3"
             >
               <span className="text-green-500/60 font-mono text-sm">$</span>
               <input

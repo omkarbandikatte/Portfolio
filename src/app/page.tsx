@@ -23,21 +23,24 @@ import {
   Trophy,
   Award,
   Users,
+  FileText,
+  Download,
 } from "lucide-react";
 import Chatbot from "@/components/Chatbot";
 import TechBalls from "@/components/TechBalls";
+import ThemeToggle from "@/components/ThemeToggle";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
 const INFO = {
   name: "Omkar Pramod Bandikatte",
-  title: "Software Developer",
+  title: "AI & Full-Stack Engineer",
   email: "omkarbandikatte2602@gmail.com",
   github: "https://github.com/omkarbandikatte",
   linkedin: "https://linkedin.com/in/omkarbandikatte",
   avatar: "https://avatars.githubusercontent.com/omkarbandikatte",
   about:
-    "Passionate software developer with hands-on experience in building AI-driven platforms, scalable microservices, and production-grade web applications. I thrive at the intersection of Artificial Intelligence and Full-Stack Development — turning complex problems into clean, user-friendly solutions. Currently pursuing B.Tech in Computer Science (Data Science) with a strong foundation in Python, modern web frameworks, and machine learning.",
+    "I build AI systems that ship: RAG pipelines, tool-calling agents, and the full-stack products around them. As a Computer Science (Data Science) student at DJSCE and former SDE Intern at Periscope Technologies, I have built production automation, data pipelines, and trustworthy AI experiences across e-commerce, recruiting, research, and computer vision.",
 };
 
 const SKILLS = {
@@ -62,6 +65,8 @@ const SKILLS = {
     "Git",
     "Postman",
     "Power BI",
+    "Docker",
+    "Azure",
   ],
   "AI / ML": [
     "TensorFlow",
@@ -71,35 +76,39 @@ const SKILLS = {
     "Deep Learning",
     "Generative AI",
     "LLMs",
+    "RAG",
+    "AI Agents",
+    "Qdrant",
+    "Elasticsearch",
   ],
 };
 
 const PROJECTS = [
   {
+    name: "DocuMind — Multi-Document Intelligence",
+    desc: "Trust-aware RAG assistant across PDFs, web pages, YouTube, audio, CSVs, and images. Hybrid Qdrant and Elasticsearch retrieval uses Reciprocal Rank Fusion, citations, credibility scoring, temporal drift detection, and self-verification.",
+    tech: ["FastAPI", "Qdrant", "Elasticsearch", "Gemini 2.5", "Docker"],
+    repo: "https://github.com/omkarbandikatte/MDIA-Multi-Document-Intelligence-Assistant",
+  },
+  {
+    name: "LeadIntel — B2B Lead Intelligence",
+    desc: "End-to-end lead scoring platform built from 6,711 publicly sourced company records. Combines conversion prediction, local Hugging Face intent classification, role-based APIs, automated retraining, and ranked account analytics.",
+    tech: ["FastAPI", "Next.js", "Scikit-learn", "Hugging Face", "Celery", "Redis"],
+    repo: "https://github.com/omkarbandikatte/LeadIntel",
+  },
+  {
     name: "FairHire — AI Interview Assistant",
-    desc: "Real-time AI interview simulator with voice input via Whisper API and LLM-powered feedback using Gemini API for personalized, instant evaluation. Responsive UI built with Next.js and Tailwind CSS, fully deployed on Vercel.",
-    tech: ["Next.js", "Tailwind CSS", "Vercel AI SDK", "Gemini API", "Whisper API"],
+    desc: "Real-time AI interview platform with Whisper voice processing, Gemini-powered evaluation in under two seconds, resume and ATS scoring, interview tracking, and sentiment and bias signals.",
+    tech: ["Next.js", "Tailwind CSS", "Gemini API", "Whisper API"],
     live: "https://v0-ai-interview-assistant-theta.vercel.app",
     repo: "https://github.com/omkarbandikatte/fairhire",
   },
   {
-    name: "Agriti — Agriculture Intelligence Platform",
-    desc: "AI-driven advisory system that analyzes crop conditions, farmer inputs, and environmental factors to generate actionable recommendations. Features multilingual responses for rural accessibility and scalable APIs for mobile/web integration.",
-    tech: ["Python", "FastAPI", "LLMs", "Computer Vision"],
-    repo: "https://github.com/omkarbandikatte/Agriti",
-  },
-  {
-    name: "DemandIQ — AI Demand Forecasting",
-    desc: "Responsive AI-powered dashboard for visualizing product demand trends and sales forecasting. Integrates REST API datasets with Chart.js visualizations, deployed on Vercel.",
-    tech: ["Next.js", "Tailwind CSS", "Chart.js", "REST API"],
-    live: "https://demand-iq.vercel.app",
-    repo: "https://github.com/omkarbandikatte/DemandIQ",
-  },
-  {
-    name: "YouTube Video Summarizer",
-    desc: "Generates concise summaries, key takeaways, and exam-style MCQs from YouTube video transcripts. Optimized latency with prompt caching and regex-based transcript parsing.",
-    tech: ["Python", "Groq LLM", "YouTube Transcript API", "Streamlit"],
-    repo: "https://github.com/omkarbandikatte/AIVideoSummarizer",
+    name: "Driver Drowsiness Detection",
+    desc: "Real-time fatigue detection across 468 facial landmarks using EAR and MAR metrics, with escalating audible, SMS, and emergency-call alerts plus a live WebSocket monitoring dashboard.",
+    tech: ["Python", "OpenCV", "MediaPipe", "FastAPI", "React", "Twilio"],
+    live: "https://driver-drowsiness-detection-system-sage.vercel.app",
+    repo: "https://github.com/omkarbandikatte/DriverDrowsinessDetectionSystem",
   },
 ];
 
@@ -110,9 +119,10 @@ const EXPERIENCE = [
     location: "India",
     period: "Jan 2026 – May 2026",
     points: [
-      "Led development of an AI-powered healthcare workflow system, reducing manual interaction time by 40% through automation of patient search and clinical navigation.",
-      "Built and deployed FastAPI-based microservices using Apache Kafka for asynchronous processing of clinical data streams and Redis for distributed caching, handling 1,000+ clinical queries/day with sub-100ms latency.",
-      "Collaborated with product and frontend teams to deliver voice-enabled AI interactions, improving task completion speed by 30% for healthcare professionals.",
+      "Led development of Stryder, a multi-client e-commerce analytics platform, building Playwright automation across Blinkit, Zepto, Instamart, BigBasket, Amazon, and Flipkart Minutes.",
+      "Built FastAPI data pipelines processing 1,000+ records per day, with consolidated reporting in Azure Blob Storage and PostgreSQL and sub-100ms reporting queries.",
+      "Designed an LLM-assisted self-healing recovery module with cached regex rules and keyword fallbacks, improving pipeline reliability by 35%.",
+      "Implemented secure multi-client authentication, TOTP/2FA automation, encrypted credential handling, and fixes for concurrent shared-inbox OTP races.",
     ],
   },
 ];
@@ -122,7 +132,7 @@ const EDUCATION = {
   school: "SVKM's Dwarkadas J. Sanghvi College of Engineering",
   location: "Mumbai, India",
   period: "Aug 2023 – June 2027",
-  cgpa: "8.68 CGPA",
+  cgpa: "8.63 CGPA",
 };
 
 const ACHIEVEMENTS = [
@@ -206,10 +216,10 @@ function TerminalWindow({
 }) {
   return (
     <motion.div
-      className={`group rounded-lg border border-white/[0.06] bg-[#0d1117]/80 overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-green-500/20 hover:shadow-lg hover:shadow-green-500/5 ${className}`}
+      className={`theme-panel group rounded-lg border border-white/[0.06] bg-[#0d1117]/80 overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-green-500/20 hover:shadow-lg hover:shadow-green-500/5 ${className}`}
       whileHover={{ y: -4 }}
     >
-      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.06] bg-white/[0.02]">
+      <div className="theme-panel-header flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.06] bg-white/[0.02]">
         <div className="flex gap-1.5">
           <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]/80 group-hover:bg-[#ff5f57] transition-colors" />
           <div className="h-2.5 w-2.5 rounded-full bg-[#febc2e]/80 group-hover:bg-[#febc2e] transition-colors" />
@@ -226,7 +236,7 @@ function TerminalWindow({
 
 function GridBackground() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-0">
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-40" />
       <div className="absolute top-0 left-1/4 h-[600px] w-[600px] rounded-full bg-purple-600/[0.06] blur-[150px]" />
       <div className="absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-green-500/[0.04] blur-[120px]" />
@@ -253,7 +263,7 @@ function Section({
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
       variants={stagger}
-      className="relative py-24"
+      className="relative overflow-x-clip py-24"
     >
       <motion.div variants={fadeUp} className="mb-16 text-center space-y-3">
         <div className="inline-flex items-center gap-3">
@@ -308,7 +318,7 @@ function WelcomeTerminal({ onComplete }: { onComplete: () => void }) {
     <motion.div
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#030306]"
+      className="theme-welcome fixed inset-0 z-[100] flex items-center justify-center bg-[#030306]"
     >
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-20" />
 
@@ -316,7 +326,7 @@ function WelcomeTerminal({ onComplete }: { onComplete: () => void }) {
         initial={{ opacity: 0, y: 20, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 w-full max-w-2xl mx-6 rounded-lg border border-green-500/20 bg-[#0a0a0f]/95 overflow-hidden shadow-2xl shadow-green-500/10"
+        className="theme-welcome-panel relative z-10 w-full max-w-2xl mx-6 rounded-lg border border-green-500/20 bg-[#0a0a0f]/95 overflow-hidden shadow-2xl shadow-green-500/10"
       >
         <div className="flex items-center gap-2 px-4 py-3 border-b border-green-500/10 bg-green-500/[0.03]">
           <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
@@ -356,7 +366,7 @@ function WelcomeTerminal({ onComplete }: { onComplete: () => void }) {
 
 /* ───────────────────────── NAVBAR ───────────────────────── */
 
-const NAV_LINKS = ["About", "Skills", "Projects", "Experience", "Achievements", "Activities", "Education", "Contact"];
+const NAV_LINKS = ["About", "Skills", "Projects", "Experience", "Achievements", "Education", "Resume", "Contact"];
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -372,7 +382,7 @@ function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
+      className={`theme-navbar fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         isScrolled
           ? "border-white/[0.06] bg-[#050508]/90 backdrop-blur-xl shadow-lg shadow-green-500/[0.03]"
           : "border-transparent bg-transparent"
@@ -409,17 +419,20 @@ function Navbar() {
           ))}
         </ul>
 
-        <motion.a
-          href="/resume"
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(34, 197, 94, 0.2)" }}
-          whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-1.5 rounded border border-green-500/30 bg-green-500/[0.06] px-4 py-2 text-xs font-mono text-green-400 hover:bg-green-500/10 hover:border-green-500/50 transition-all"
-        >
-          <ExternalLink className="h-3 w-3" />
-          resume.pdf
-        </motion.a>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <motion.a
+            href="/resume"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(34, 197, 94, 0.2)" }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-1.5 rounded border border-green-500/30 bg-green-500/[0.06] px-3 py-2 text-xs font-mono text-green-400 hover:bg-green-500/10 hover:border-green-500/50 transition-all sm:px-4"
+          >
+            <ExternalLink className="h-3 w-3" />
+            <span className="hidden sm:inline">resume.pdf</span>
+          </motion.a>
+        </div>
       </div>
     </motion.nav>
   );
@@ -504,7 +517,7 @@ export async function solve(
             transition={{ delay: 0.85, duration: 0.5 }}
             className="max-w-lg text-base text-gray-400 leading-relaxed"
           >
-            Building AI-driven platforms &amp; scalable web applications — turning complex problems into clean, user-friendly solutions.
+            Building RAG pipelines, AI agents, and full-stack products that turn complex workflows into reliable software.
           </motion.p>
 
           {/* Role - code syntax style */}
@@ -607,7 +620,7 @@ function About() {
             <p className="text-gray-300 leading-7 font-sans text-base">{INFO.about}</p>
             <div className="mt-5 flex items-center gap-4 text-xs text-gray-600 font-mono">
               <span className="flex items-center gap-1.5">
-                <MapPin className="h-3 w-3 text-green-500/50" /> Mumbai, India
+                <MapPin className="h-3 w-3 text-green-500/50" /> Neral, Maharashtra
               </span>
               <span className="flex items-center gap-1.5">
                 <Mail className="h-3 w-3 text-green-500/50" /> {INFO.email}
@@ -938,6 +951,49 @@ function EducationSection() {
   );
 }
 
+/* ───────────────────────── RESUME ───────────────────────── */
+
+function ResumePreview() {
+  return (
+    <Section id="resume" label="// RESUME" title="Resume">
+      <motion.div variants={fadeUp} className="mx-auto max-w-5xl">
+        <div className="theme-panel overflow-hidden rounded-lg border border-white/[0.08] bg-[#0d1117]/80 shadow-2xl shadow-black/30">
+          <div className="theme-panel-header flex flex-col gap-3 border-b border-white/[0.06] bg-white/[0.02] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2 font-mono text-xs text-gray-400">
+              <FileText className="h-4 w-4 text-green-400" />
+              omkar-bandikatte-resume.pdf
+            </div>
+            <div className="flex items-center gap-2">
+              <a
+                href="/resume"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded border border-white/[0.1] px-3 py-2 font-mono text-xs text-gray-300 transition-colors hover:border-green-500/40 hover:text-green-400"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                Open viewer
+              </a>
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-1.5 rounded border border-green-500/30 bg-green-500/10 px-3 py-2 font-mono text-xs text-green-400 transition-colors hover:bg-green-500/15"
+              >
+                <Download className="h-3.5 w-3.5" />
+                Download
+              </a>
+            </div>
+          </div>
+          <iframe
+            src="/resume.pdf#view=FitH"
+            title="Preview of Omkar Bandikatte's resume"
+            className="h-[72vh] min-h-[560px] w-full bg-white"
+          />
+        </div>
+      </motion.div>
+    </Section>
+  );
+}
+
 /* ───────────────────────── CONTACT ───────────────────────── */
 
 function Contact() {
@@ -985,7 +1041,7 @@ function Contact() {
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="> John Doe"
-                    className="w-full rounded border border-white/[0.08] bg-[#0a0a0f] px-4 py-3 text-sm font-mono text-white placeholder-gray-700 outline-none transition-all focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 hover:border-white/[0.12]"
+                    className="theme-input w-full rounded border border-white/[0.08] bg-[#0a0a0f] px-4 py-3 text-sm font-mono text-white placeholder-gray-700 outline-none transition-all focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 hover:border-white/[0.12]"
                   />
                 </motion.div>
 
@@ -1001,10 +1057,11 @@ function Contact() {
                   <input
                     type="email"
                     required
+                    suppressHydrationWarning
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="> you@example.com"
-                    className="w-full rounded border border-white/[0.08] bg-[#0a0a0f] px-4 py-3 text-sm font-mono text-white placeholder-gray-700 outline-none transition-all focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 hover:border-white/[0.12]"
+                    className="theme-input w-full rounded border border-white/[0.08] bg-[#0a0a0f] px-4 py-3 text-sm font-mono text-white placeholder-gray-700 outline-none transition-all focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 hover:border-white/[0.12]"
                   />
                 </motion.div>
               </div>
@@ -1024,7 +1081,7 @@ function Contact() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="> Tell me about your project..."
-                  className="w-full resize-none rounded border border-white/[0.08] bg-[#0a0a0f] px-4 py-3 text-sm font-mono text-white placeholder-gray-700 outline-none transition-all focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 hover:border-white/[0.12]"
+                  className="theme-input w-full resize-none rounded border border-white/[0.08] bg-[#0a0a0f] px-4 py-3 text-sm font-mono text-white placeholder-gray-700 outline-none transition-all focus:border-green-500/40 focus:ring-1 focus:ring-green-500/20 hover:border-white/[0.12]"
                 />
               </motion.div>
 
@@ -1103,6 +1160,7 @@ export default function Home() {
         <Achievements />
         <CoCurricular />
         <EducationSection />
+        <ResumePreview />
         <Contact />
       </main>
 

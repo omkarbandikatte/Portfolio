@@ -92,7 +92,7 @@ function Ball({
       <motion.div
         className="w-full h-full rounded-full flex flex-col items-center justify-center gap-1"
         style={{
-          background: `radial-gradient(circle at 35% 30%, rgba(${hexToRgb(color)}, 0.15) 0%, #1a1a2e 40%, #0f0f1a 70%, #080810 100%)`,
+          background: `radial-gradient(circle at 35% 30%, rgba(${hexToRgb(color)}, 0.18) 0%, var(--tech-ball-mid) 42%, var(--tech-ball-edge) 100%)`,
           boxShadow: `
             inset -4px -4px 12px rgba(0,0,0,0.6),
             inset 2px 2px 8px rgba(${hexToRgb(color)}, 0.2),
