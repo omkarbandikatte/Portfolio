@@ -998,18 +998,45 @@ function ResumePreview() {
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-    window.open(`mailto:${INFO.email}?subject=${subject}&body=${body}`, "_self");
-    setStatus("sent");
-    setForm({ name: "", email: "", message: "" });
-    setTimeout(() => setStatus("idle"), 5000);
+    setStatus("sending");
+    setStatusMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const result = (await response.json()) as {
+        error?: string;
+        message?: string;
+      };
+
+      if (!response.ok) {
+        setStatus("error");
+        setStatusMessage(result.error ?? "Unable to send your message.");
+        return;
+      }
+
+      setStatus("sent");
+      setStatusMessage(result.message ?? "Message sent successfully.");
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => {
+        setStatus("idle");
+        setStatusMessage("");
+      }, 5000);
+    } catch (error) {
+      console.error("Contact form submission error:", error);
+      setStatus("error");
+      setStatusMessage("Unable to reach the email service. Please try again.");
+    }
   };
 
   return (
@@ -1088,27 +1115,35 @@ function Contact() {
               <div className="flex flex-col items-center gap-4 pt-2">
                 <motion.button
                   type="submit"
+                  disabled={status === "sending"}
                   whileHover={{
                     scale: 1.03,
                     boxShadow: "0 0 30px rgba(34, 197, 94, 0.2)",
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2 rounded border border-green-500/30 bg-green-500/10 px-8 py-3 font-mono text-sm font-bold text-green-400 transition-all hover:bg-green-500/15 hover:border-green-500/50"
+                  className="inline-flex items-center gap-2 rounded border border-green-500/30 bg-green-500/10 px-8 py-3 font-mono text-sm font-bold text-green-400 transition-all hover:bg-green-500/15 hover:border-green-500/50 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   <Send className="h-4 w-4" />
-                  send_message()
+                  {status === "sending" ? "sending..." : "send_message()"}
                 </motion.button>
 
-                <AnimatePresence>
-                  {status === "sent" && (
+                <AnimatePresence mode="wait">
+                  {(status === "sent" || status === "error") && (
                     <motion.p
+                      key={status}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
-                      className="flex items-center gap-2 text-xs font-mono text-green-400"
+                      role="status"
+                      aria-live="polite"
+                      className={`flex items-center gap-2 text-xs font-mono ${
+                        status === "sent" ? "text-green-400" : "text-red-400"
+                      }`}
                     >
-                      <CheckCircle2 className="h-4 w-4" />
-                      ✓ Opening email client...
+                      {status === "sent" && (
+                        <CheckCircle2 className="h-4 w-4" />
+                      )}
+                      {statusMessage}
                     </motion.p>
                   )}
                 </AnimatePresence>
