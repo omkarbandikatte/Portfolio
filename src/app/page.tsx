@@ -123,6 +123,7 @@ const PROJECTS: Project[] = [
     desc: "Trust-aware RAG assistant across PDFs, web pages, YouTube, audio, CSVs, and images. Hybrid Qdrant and Elasticsearch retrieval uses Reciprocal Rank Fusion, citations, credibility scoring, temporal drift detection, and self-verification.",
     tech: ["FastAPI", "Qdrant", "Elasticsearch", "Gemini 2.5", "Docker"],
     repo: "https://github.com/omkarbandikatte/MDIA-Multi-Document-Intelligence-Assistant",
+    image: "/documind.png",
   },
   {
     name: "LeadIntel: B2B Lead Intelligence",
@@ -133,6 +134,7 @@ const PROJECTS: Project[] = [
     desc: "End-to-end lead scoring platform built from 6,711 publicly sourced company records. Combines conversion prediction, local Hugging Face intent classification, role-based APIs, automated retraining, and ranked account analytics.",
     tech: ["FastAPI", "Next.js", "Scikit-learn", "Hugging Face", "Celery", "Redis"],
     repo: "https://github.com/omkarbandikatte/LeadIntel",
+    image: "/leadintel.png",
   },
   {
     name: "FairHire: AI Interview Assistant",
