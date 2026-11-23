@@ -2,7 +2,7 @@ import Groq from "groq-sdk";
 import { NextRequest, NextResponse } from "next/server";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY, timeout: 30000 });
-const CHAT_MODEL = "llama-3.1-8b-instant";
+const CHAT_MODEL = "openai/gpt-oss-20b";
 
 const SYSTEM_PROMPT = `You are Omkar's portfolio assistant. Your only purpose is to answer questions specifically about Omkar using the profile below.
 
