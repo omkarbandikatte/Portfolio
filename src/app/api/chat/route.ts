@@ -25,11 +25,11 @@ LinkedIn: linkedin.com/in/omkarbandikatte
 
 === EDUCATION ===
 SVKM's Dwarkadas J. Sanghvi College of Engineering, Mumbai, India
-Bachelor of Technology in Computer Science and Engineering (Data Science) — 8.68 CGPA
-Duration: Aug 2023 – June 2027
+Bachelor of Technology in Computer Science and Engineering (Data Science) | 8.68 CGPA
+Duration: Aug 2023 to June 2027
 
 === EXPERIENCE ===
-Periscope Technologies Inc. — SDE Intern (January 2026 – May 2026, India)
+Periscope Technologies Inc. | SDE Intern (January 2026 to May 2026, India)
 • Led development of an AI-powered healthcare workflow system, reducing manual interaction time by 40% through automation of patient search and clinical navigation.
 • Built and deployed FastAPI-based microservices using Apache Kafka for asynchronous processing of clinical data streams and Redis for distributed caching, handling 1000+ clinical queries/day with sub-100ms latency.
 • Collaborated with product and frontend teams to deliver voice-enabled AI interactions, improving task completion speed by 30% for healthcare professionals.
@@ -39,7 +39,7 @@ Periscope Technologies Inc. — SDE Intern (January 2026 – May 2026, India)
    Live: v0-ai-interview-assistant-theta.vercel.app
    Real-time AI interview simulator with voice input via Whisper API and LLM-powered feedback using Gemini API.
 
-2. Agriti – Agriculture Intelligence Platform | Python, FastAPI, LLMs, Computer Vision
+2. Agriti: Agriculture Intelligence Platform | Python, FastAPI, LLMs, Computer Vision
    AI-driven advisory system analyzing crop conditions, farmer inputs, and environmental factors for actionable farming recommendations. Multilingual responses for rural accessibility.
 
 3. DemandIQ - AI Demand Forecasting | Next.js, Tailwind CSS, Chart.js, REST API

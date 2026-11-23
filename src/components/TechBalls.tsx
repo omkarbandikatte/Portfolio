@@ -26,17 +26,17 @@ const POSITIONS = [
   { x: 35, y: 12, size: 100 },
   { x: 52, y: 16, size: 120 },
   { x: 68, y: 10, size: 105 },
-  { x: 83, y: 18, size: 110 },
+  { x: 76, y: 18, size: 110 },
   { x: 12, y: 45, size: 105 },
   { x: 30, y: 43, size: 115 },
   { x: 50, y: 47, size: 130 },
   { x: 68, y: 42, size: 108 },
-  { x: 85, y: 46, size: 100 },
+  { x: 76, y: 46, size: 100 },
   { x: 20, y: 73, size: 100 },
   { x: 37, y: 70, size: 112 },
   { x: 55, y: 75, size: 105 },
   { x: 72, y: 70, size: 118 },
-  { x: 87, y: 75, size: 100 },
+  { x: 76, y: 75, size: 100 },
 ];
 
 function hexToRgb(hex: string): string {
@@ -63,6 +63,8 @@ function Ball({
   index: number;
 }) {
   const duration = 3.5 + (index % 5) * 0.6;
+  const minimumSize = Math.round(size * 0.68);
+  const responsiveSize = `clamp(${minimumSize}px, ${size / 10}vw, ${size}px)`;
 
   return (
     <motion.div
@@ -70,8 +72,8 @@ function Ball({
       style={{
         left: `${x}%`,
         top: `${y}%`,
-        width: size,
-        height: size,
+        width: responsiveSize,
+        height: responsiveSize,
         transform: "translate(-50%, -50%)",
       }}
       initial={{ opacity: 0, scale: 0 }}

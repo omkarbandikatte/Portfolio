@@ -2,12 +2,27 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot, User, Loader2, Terminal } from "lucide-react";
+import { X, Send, User, Loader2 } from "lucide-react";
 
 type Message = {
   role: "user" | "assistant";
   content: string;
 };
+
+function BuddyMark({ size = "launcher" }: { size?: "launcher" | "header" | "message" }) {
+  return (
+    <span className={`buddy-mark buddy-mark-${size}`} aria-hidden="true">
+      <span className="buddy-ear buddy-ear-left" />
+      <span className="buddy-ear buddy-ear-right" />
+      <span className="buddy-face">
+        <span className="buddy-eye buddy-eye-left" />
+        <span className="buddy-eye buddy-eye-right" />
+        <span className="buddy-smile" />
+      </span>
+      <span className="buddy-status" />
+    </span>
+  );
+}
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
@@ -16,7 +31,7 @@ export default function Chatbot() {
     {
       role: "assistant",
       content:
-        "Hey! 👋 I'm Omkar's AI assistant. Ask me anything about his skills, projects, experience, or education!",
+        "Hey! 👋 I'm OB Buddy. Ask me about Omkar's projects, skills, experience, education, or availability.",
     },
   ]);
   const [loading, setLoading] = useState(false);
@@ -72,6 +87,7 @@ export default function Chatbot() {
         whileHover={{ scale: 1.1, boxShadow: "0 0 24px rgba(34, 197, 94, 0.4)" }}
         whileTap={{ scale: 0.95 }}
         className="theme-chat-button fixed bottom-4 right-4 z-[90] flex h-14 w-14 items-center justify-center rounded-full border border-green-500/30 bg-[#0d1117] shadow-lg shadow-green-500/10 transition-all hover:border-green-500/50 hover:shadow-green-500/20 sm:bottom-6 sm:right-6 sm:h-[72px] sm:w-[72px]"
+        aria-label={open ? "Close Omkar's AI buddy" : "Chat with Omkar's AI buddy"}
       >
         <AnimatePresence mode="wait">
           {open ? (
@@ -93,37 +109,7 @@ export default function Chatbot() {
               transition={{ duration: 0.2 }}
               className="relative"
             >
-              {/* Full Body 3D Robot */}
-              <div className="relative flex flex-col items-center" style={{ width: 36, height: 48 }}>
-                {/* Antenna */}
-                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 h-1.5 w-0.5 bg-green-300" />
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-green-300 shadow-[0_0_6px_rgba(74,222,128,0.9)]" />
-                {/* Head */}
-                <div className="relative h-5 w-7 rounded-md bg-gradient-to-b from-green-400 to-emerald-600 shadow-[0_2px_4px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)]">
-                  {/* Eyes */}
-                  <div className="absolute top-1.5 left-1 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_3px_rgba(255,255,255,0.8)]" />
-                  <div className="absolute top-1.5 right-1 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_3px_rgba(255,255,255,0.8)]" />
-                  {/* Mouth */}
-                  <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 h-0.5 w-3 rounded-full bg-white/50" />
-                </div>
-                {/* Neck */}
-                <div className="h-1 w-2 bg-gray-500" />
-                {/* Body */}
-                <div className="relative h-5 w-6 rounded-md bg-gradient-to-b from-emerald-500 to-green-700 shadow-[0_3px_6px_rgba(0,0,0,0.4),inset_0_1px_2px_rgba(255,255,255,0.2)]">
-                  {/* Chest light */}
-                  <div className="absolute top-1 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_4px_rgba(103,232,249,0.8)]" />
-                  {/* Belt line */}
-                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-4 rounded-full bg-green-900/60" />
-                </div>
-                {/* Arms */}
-                <div className="absolute top-[22px] -left-1 h-5 w-1.5 rounded-full bg-gradient-to-b from-emerald-500 to-green-700 shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
-                <div className="absolute top-[22px] -right-1 h-5 w-1.5 rounded-full bg-gradient-to-b from-emerald-500 to-green-700 shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
-                {/* Legs */}
-                <div className="flex gap-1 mt-0.5">
-                  <div className="h-4 w-2 rounded-b-md bg-gradient-to-b from-green-700 to-green-900 shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
-                  <div className="h-4 w-2 rounded-b-md bg-gradient-to-b from-green-700 to-green-900 shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
-                </div>
-              </div>
+              <BuddyMark />
             </motion.div>
           )}
         </AnimatePresence>
@@ -147,9 +133,11 @@ export default function Chatbot() {
                 <div className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
               </div>
               <div className="ml-1 flex items-center gap-2">
-                <Terminal className="h-4 w-4 text-green-400" />
-                <p className="text-[11px] font-mono text-gray-400">omkar-ai-assistant</p>
-                <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                <BuddyMark size="header" />
+                <div>
+                  <p className="text-[11px] font-mono font-semibold text-gray-300">OB Buddy</p>
+                  <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-green-400">Online · ready to help</p>
+                </div>
               </div>
             </div>
 
@@ -166,7 +154,7 @@ export default function Chatbot() {
                   }`}
                 >
                   {msg.role === "assistant" && (
-                    <span className="mt-1 shrink-0 text-green-500 font-mono text-xs">{">"}</span>
+                    <BuddyMark size="message" />
                   )}
                   <div
                     className={`max-w-[80%] rounded-lg px-4 py-2.5 text-sm leading-relaxed ${
@@ -189,7 +177,7 @@ export default function Chatbot() {
                   animate={{ opacity: 1 }}
                   className="flex items-center gap-2"
                 >
-                  <span className="text-green-500 font-mono text-xs">{">"}</span>
+                  <BuddyMark size="message" />
                   <div className="theme-chat-message rounded-lg rounded-bl-sm border border-white/[0.06] bg-white/[0.03] px-4 py-2.5">
                     <Loader2 className="h-4 w-4 animate-spin text-green-400" />
                   </div>
