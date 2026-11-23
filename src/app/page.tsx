@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Github,
@@ -484,6 +484,28 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleMobileNavigation = (
+    event: MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
+    event.preventDefault();
+    setIsMenuOpen(false);
+    window.history.pushState(null, "", `#${targetId}`);
+
+    window.requestAnimationFrame(() => {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const top = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+      });
+    });
+  };
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -568,7 +590,9 @@ function Navbar() {
                 <a
                   key={link}
                   href={`#${link.toLowerCase()}`}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(event) =>
+                    handleMobileNavigation(event, link.toLowerCase())
+                  }
                   className="flex items-center gap-2 border-b border-white/[0.05] py-3 font-mono text-xs text-gray-400 transition-colors hover:text-green-400"
                 >
                   <span className="text-green-500/50">0{index + 1}</span>

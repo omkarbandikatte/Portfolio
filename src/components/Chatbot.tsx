@@ -63,13 +63,25 @@ export default function Chatbot() {
         }),
       });
 
-      const data = await res.json();
+      const data: unknown = await res.json();
 
+      if (
+        !res.ok ||
+        typeof data !== "object" ||
+        data === null ||
+        !("reply" in data) ||
+        typeof data.reply !== "string"
+      ) {
+        throw new Error(`Chat request failed with status ${res.status}.`);
+      }
+
+      const reply = data.reply;
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.reply ?? "Sorry, something went wrong." },
+        { role: "assistant", content: reply },
       ]);
-    } catch {
+    } catch (error) {
+      console.error("Unable to get a response from OB Buddy.", error);
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: "Sorry, I couldn't connect. Try again later." },

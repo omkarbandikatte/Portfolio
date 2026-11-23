@@ -2,6 +2,7 @@ import Groq from "groq-sdk";
 import { NextRequest, NextResponse } from "next/server";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY, timeout: 30000 });
+const CHAT_MODEL = "llama-3.1-8b-instant";
 
 const SYSTEM_PROMPT = `You are Omkar's portfolio assistant. Your only purpose is to answer questions specifically about Omkar using the profile below.
 
@@ -84,7 +85,7 @@ export async function POST(req: NextRequest) {
     const recentMessages = messages.slice(-10);
 
     const chatCompletion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+      model: CHAT_MODEL,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         ...recentMessages,
