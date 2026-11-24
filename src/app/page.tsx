@@ -44,7 +44,7 @@ const INFO = {
   email: "omkarbandikatte2602@gmail.com",
   github: "https://github.com/omkarbandikatte",
   linkedin: "https://linkedin.com/in/omkarbandikatte",
-  avatar: "https://avatars.githubusercontent.com/omkarbandikatte",
+  avatar: "/avatar.jpg",
   about:
     "I build production-ready AI systems, including RAG pipelines, tool-calling agents, automation workflows, and the full-stack products around them. As a Computer Science (Data Science) student at DJSCE and former SDE Intern at Periscope Technologies, I have worked on e-commerce analytics, recruiting tools, research assistants, and computer vision applications.",
 };
