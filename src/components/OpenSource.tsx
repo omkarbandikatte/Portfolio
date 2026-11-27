@@ -35,15 +35,15 @@ const GH = "https://github.com";
 
 const CONTRIBUTIONS: Contribution[] = [
   { org: "uber", repo: "causalml", pr: 1075, issue: 1074, status: "merged", lang: "Python", summary: "TMLELearner counted other treatment groups as control rows, biasing multi-treatment ATE", note: "Merged 2026-11-27" },
+  { org: "microsoft", repo: "kiota-python", pr: 925, issue: 924, status: "merged", lang: "Python", summary: "RequestInformation.url crashed on timedelta path or query parameters", note: "Merged 2026-11-27" },
+  { org: "microsoft", repo: "kiota-serialization-json-go", pr: 247, status: "merged", lang: "Go", summary: "WriteTimeValue dropped fractional seconds, so round trips lost precision", note: "Merged 2026-11-27" },
+  { org: "microsoft", repo: "kiota-typescript", pr: 2243, status: "merged", lang: "TypeScript", summary: "RedirectHandler treated relative URLs containing :// as absolute", note: "Merged 2026-11-27" },
   { org: "google", repo: "go-github", pr: 4738, issue: 4737, status: "approved", lang: "Go", summary: "Invitation teams URL never decoded because of a wrong JSON tag", note: "Approved, waiting on a 2nd LGTM" },
   { org: "slackapi", repo: "python-slack-sdk", pr: 2082, issue: 2081, status: "approved", lang: "Python", summary: "AuthorizeUrlGenerator didn't URL-encode redirect_uri, state and other query values", note: "Milestone 3.48.1" },
   { org: "slackapi", repo: "bolt-python", pr: 1629, issue: 1628, status: "review", lang: "Python", summary: "Form bodies containing the word \"payload\" were parsed as empty", note: "Milestone \"next\"" },
   { org: "meta", repo: "prophet", pr: 2796, status: "review", lang: "Python", summary: "plot_plotly raised ValueError on every call because of DataFrame truthiness" },
   { org: "py-why", repo: "EconML", pr: 1090, status: "review", lang: "Python", summary: "individualized_policy didn't scale treatment costs for continuous treatments" },
   { org: "Netflix", repo: "metaflow", pr: 3459, issue: 3458, status: "review", lang: "Python", summary: "Card tables added \"...\" to every value in a column with one long value" },
-  { org: "microsoft", repo: "kiota-python", pr: 925, issue: 924, status: "review", lang: "Python", summary: "RequestInformation.url crashed on timedelta path or query parameters" },
-  { org: "microsoft", repo: "kiota-serialization-json-go", pr: 247, status: "review", lang: "Go", summary: "WriteTimeValue dropped fractional seconds, so round trips lost precision" },
-  { org: "microsoft", repo: "kiota-typescript", pr: 2243, status: "review", lang: "TypeScript", summary: "RedirectHandler treated relative URLs containing :// as absolute" },
   { org: "google", repo: "adk-js", pr: 1406, issue: 1405, status: "review", lang: "TypeScript", summary: "genaiSchemaToJsonSchema now admits null for nullable schemas" },
   { org: "google", repo: "adk-js", pr: 1409, issue: 1407, status: "review", lang: "TypeScript", summary: "toGeminiSchema kept description and constraints beside an optional anyOf" },
   { org: "google", repo: "adk-js", pr: 1410, issue: 1408, status: "review", lang: "TypeScript", summary: "deleteArtifact no longer deletes artifacts nested under the deleted name" },
@@ -57,6 +57,7 @@ const ACTIVITY = [
   { date: "11-25", text: "slackapi/bolt-python #1629 · uber/causalml issue #1074" },
   { date: "11-26", text: "PRs to Uber, Meta, py-why, Netflix, Microsoft, Google" },
   { date: "11-27", text: "uber/causalml #1075 MERGED · go-github approved", highlight: true },
+  { date: "11-27", text: "microsoft kiota-python, kiota-json-go, kiota-typescript MERGED", highlight: true },
 ];
 
 const STATUS_META: Record<PRStatus, { label: string; className: string; Icon: typeof GitMerge }> = {
@@ -350,7 +351,7 @@ function ActivityLog() {
       <ol className="oss-log-body">
         {ACTIVITY.map((a, i) => (
           <motion.li
-            key={a.date}
+            key={`${a.date}-${i}`}
             initial={{ opacity: 0, x: -12 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

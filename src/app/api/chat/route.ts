@@ -36,10 +36,11 @@ Periscope Technologies Inc. | SDE Intern (January 2026 to May 2026, India)
 • Collaborated with product and frontend teams to deliver voice-enabled AI interactions, improving task completion speed by 30% for healthcare professionals.
 
 === OPEN SOURCE ===
-• Merged: uber/causalml PR #1075 (merged 2026-11-27). Fixed a bug where TMLELearner.estimate_ate counted other treatment groups as control rows in multi-treatment settings, biasing ATE estimates. Added regression tests and updated the docs.
+• 4 merged PRs. First merge: uber/causalml PR #1075 (merged 2026-11-27). Fixed a bug where TMLELearner.estimate_ate counted other treatment groups as control rows in multi-treatment settings, biasing ATE estimates. Added regression tests and updated the docs.
+• Merged into Microsoft Kiota on 2026-11-27: kiota-python #925 (timedelta path/query parameters crashed RequestInformation.url), kiota-serialization-json-go #247 (preserve fractional seconds in time values) and kiota-typescript #2243 (RedirectHandler mis-detected relative URLs containing ://).
 • Approved: google/go-github #4738 (fixed the JSON tag for the invitation teams URL) and slackapi/python-slack-sdk #2082 (URL-encode authorize URL query values).
-• In review: PRs to Meta (prophet), Microsoft (kiota-python, kiota-typescript, kiota-serialization-json-go), Netflix (metaflow), Slack (bolt-python), py-why (EconML) and Google (adk-js).
-• 13 PRs opened across 8 organisations: Uber, Meta, Google, Microsoft, Netflix, Slack, py-why and AWS.
+• In review: PRs to Meta (prophet), Netflix (metaflow), Slack (bolt-python), py-why (EconML) and Google (adk-js).
+• 13 PRs opened (4 merged, 2 approved, 7 in review) across 8 organisations: Uber, Meta, Google, Microsoft, Netflix, Slack, py-why and AWS.
 
 === PROJECTS ===
 1. FairHire - AI Interview Assistant | Next.js, Tailwind CSS, Vercel AI SDK, Gemini API, Whisper API
