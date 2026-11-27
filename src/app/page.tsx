@@ -35,6 +35,7 @@ import {
 import Chatbot from "@/components/Chatbot";
 import TechBalls from "@/components/TechBalls";
 import ThemeToggle from "@/components/ThemeToggle";
+import OpenSource from "@/components/OpenSource";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
@@ -480,7 +481,7 @@ function CinematicIntro({ onComplete }: { onComplete: () => void }) {
 
 /* ───────────────────────── NAVBAR ───────────────────────── */
 
-const NAV_LINKS = ["About", "Skills", "Projects", "Experience", "Achievements", "Education", "Resume", "Contact"];
+const NAV_LINKS = ["About", "Skills", "Projects", "Experience", "OpenSource", "Achievements", "Education", "Resume", "Contact"];
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -1037,6 +1038,16 @@ function Experience() {
   );
 }
 
+/* ───────────────────────── OPEN SOURCE ───────────────────────── */
+
+function OpenSourceSection() {
+  return (
+    <Section id="opensource" label="// OPEN_SOURCE" title="Shipping upstream">
+      <OpenSource />
+    </Section>
+  );
+}
+
 /* ───────────────────────── ACHIEVEMENTS ───────────────────────── */
 
 function Achievements() {
@@ -1400,6 +1411,7 @@ export default function Home() {
         <Skills />
         <Projects />
         <Experience />
+        <OpenSourceSection />
         <Achievements />
         <CoCurricular />
         <EducationSection />
@@ -1416,6 +1428,7 @@ export default function Home() {
             <div className="site-footer-nav">
               <a href="#projects">Work</a>
               <a href="#experience">Experience</a>
+              <a href="#opensource">Open source</a>
               <a href="#contact">Contact</a>
               <a href="/resume">Resume</a>
             </div>
